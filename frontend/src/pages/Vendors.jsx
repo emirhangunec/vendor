@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 // icons
 import { FaPlus } from "react-icons/fa";
 // components
 import VendorListItem from "../components/VendorListItem";
 import AddVendorPopup from "../components/AddVendorPopup";
+import Loading from "../components/Loading";
 
 export default function Vendors() {
     const [vendors, SetVendors] = useState([]);
@@ -15,10 +15,8 @@ export default function Vendors() {
         if (isAddVendorPopupOpen) {
             SetIsLoading(true);
             setIsAddVendorPopupOpen(false);
-            enableBodyScroll(document);
         } else {
             setIsAddVendorPopupOpen(true);
-            disableBodyScroll(document);
         }
     }
     // get vendors from api
@@ -69,9 +67,7 @@ export default function Vendors() {
                     {/* vendor items */}
                     {isloading ? (
                         // Loading Animation
-                        <div className="w-full animate-pulse py-8 text-center text-2xl">
-                            Loading
-                        </div>
+                        <Loading />
                     ) : (
                         vendors.map((vendor, key) => {
                             return (
@@ -86,11 +82,11 @@ export default function Vendors() {
                 </div>
             </div>
             {/* popup manager */}
-            {isAddVendorPopupOpen ? (
-                <AddVendorPopup toggler={ToggleAddVendorPopup} />
-            ) : (
-                ""
-            )}
+
+            <AddVendorPopup
+                isShown={isAddVendorPopupOpen}
+                toggler={ToggleAddVendorPopup}
+            />
         </>
     );
 }
