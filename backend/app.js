@@ -3,8 +3,9 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+//routers
 const vendorRouter = require("./sections/vendor/vendorRouter");
-
+const customerRouter = require("./sections/customer/customerRouter");
 // app initialization
 const app = express();
 app.use(cors());
@@ -12,6 +13,7 @@ app.use(express.json());
 
 // endpoints
 app.use("/vendors", vendorRouter);
+app.use("/customers", customerRouter);
 
 // run sever
 mongoose

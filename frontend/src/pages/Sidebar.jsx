@@ -18,6 +18,7 @@ import {
     FaUserCircle,
     FaMoon,
 } from "react-icons/fa";
+import { BsPeopleFill } from "react-icons/bs";
 import {
     TbLayoutSidebarRightCollapse,
     TbLayoutSidebarRightExpand,
@@ -78,9 +79,9 @@ export default function Sidebar() {
             link: "/calendar",
         },
         {
-            name: "Activity",
-            icons: [<FaChartLine size={24} />, <FaChartLine size={24} />],
-            link: "/activity",
+            name: "Customers",
+            icons: [<BsPeopleFill size={24} />, <BsPeopleFill size={24} />],
+            link: "/customers",
         },
         {
             name: "Static",

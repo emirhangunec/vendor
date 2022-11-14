@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Vendors from "./pages/Vendors";
 import App from "./App";
 import VendorDetails from "./pages/VendorDetails";
+import Customers from "./pages/Customers";
 
 // router
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path: "/vendors/:id",
                 element: <VendorDetails />,
+            },
+            {
+                path: "/customers",
+                element: <Customers />,
             },
         ],
     },

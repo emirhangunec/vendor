@@ -77,6 +77,7 @@ export default function FormMaker({
     const [inputs, SetInputs] = useState({});
     const [inputValues, SetInputValues] = useState({});
     const [reqs, SetReqs] = useState({});
+
     const [canSubmit, SetCanSubmit] = useState(false);
 
     useEffect(() => {
@@ -95,6 +96,7 @@ export default function FormMaker({
                 if (values && values[item.name]) {
                     inputValues[item.name] = values[item.name];
                 }
+
                 reqs[item.name] = item.required;
             });
         });
@@ -114,6 +116,7 @@ export default function FormMaker({
     function CheckCanSubmit() {
         SetCanSubmit(false);
         //checks all inputs are filled
+
         if (
             Object.keys(inputs).length === Object.keys(inputValues).length &&
             Object.keys(inputValues).every((key) => inputValues[key])
@@ -133,7 +136,7 @@ export default function FormMaker({
                 errorText = "This isn't a string!";
                 css = " border-red-600 bg-red-200";
             }
-            // starts with
+            // contains
             else if (
                 req.mustContain &&
                 !contains(e.target.value, req.mustContain)
