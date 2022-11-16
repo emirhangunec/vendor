@@ -9,6 +9,7 @@ import Vendors from "./pages/Vendors";
 import App from "./App";
 import VendorDetails from "./pages/VendorDetails";
 import Customers from "./pages/Customers";
+import CustomerDetails from "./pages/CustomerDetails";
 
 // router
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path: "/customers",
                 element: <Customers />,
+            },
+            {
+                path: "/customers/:id",
+                element: <CustomerDetails />,
             },
         ],
     },

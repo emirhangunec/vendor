@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import AddCustomerPopup from "../components/AddCustomerPopup";
+import Loading from "../components/Loading";
+import ListItem from "../components/ListItem";
 
 export default function Customers() {
     const [customers, SetCustomers] = useState([]);
@@ -18,12 +20,13 @@ export default function Customers() {
     // get vendors from api
     useEffect(async () => {
         await (
-            await fetch("http://localhost:3001/vendors")
+            await fetch("http://localhost:3001/customers")
         )
             .json()
             .then((response) => {
                 if (response !== customers) SetCustomers(response);
                 SetIsLoading(false);
+                console.log(customers);
             })
             .catch((err) => {
                 console.error(err.message);
@@ -41,7 +44,37 @@ export default function Customers() {
                     <FaPlus /> Add
                 </button>
             </div>
-            {/* TODO: customers list */}
+            <div className="flex-grow">
+                {/* vendor list header */}
+                <div className=" grid w-full grid-cols-2 lg:grid-cols-5">
+                    <h3 className="border-b p-2 text-lg">Name</h3>
+                    <h3 className="hidden border-b p-2 text-lg lg:block">
+                        Company Name
+                    </h3>
+                    <h3 className="hidden border-b p-2 text-lg lg:block">
+                        E-mail
+                    </h3>
+                    <h3 className="hidden border-b p-2 text-lg lg:block">
+                        Work Phone
+                    </h3>
+                    <h3 className="border-b p-2 text-lg">Payables Code</h3>
+                </div>
+                {/* TODO: customers list */}
+                {isloading ? (
+                    // Loading Animation
+                    <Loading />
+                ) : (
+                    customers.map((customer, key) => {
+                        return (
+                            <ListItem
+                                key={key}
+                                id={key}
+                                item={customer}
+                            />
+                        );
+                    })
+                )}
+            </div>
             {/* add popup */}
             <AddCustomerPopup
                 isShown={isAddCustomerPopupOpen}

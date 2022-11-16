@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 // icons
 import { FaPlus } from "react-icons/fa";
 // components
-import VendorListItem from "../components/VendorListItem";
+import ListItem from "../components/ListItem";
 import AddVendorPopup from "../components/AddVendorPopup";
 import Loading from "../components/Loading";
 
@@ -71,10 +71,10 @@ export default function Vendors() {
                     ) : (
                         vendors.map((vendor, key) => {
                             return (
-                                <VendorListItem
+                                <ListItem
                                     key={key}
                                     id={key}
-                                    vendor={vendor}
+                                    item={vendor}
                                 />
                             );
                         })
